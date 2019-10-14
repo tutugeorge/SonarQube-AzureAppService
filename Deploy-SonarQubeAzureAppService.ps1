@@ -16,7 +16,7 @@ $zipFiles = $allDownloads[0].Links | Where-Object { $_.href.EndsWith('.zip') -an
 $sortedZipFiles = $zipFiles | Sort-Object -Property @{ Expression = { [Version]([RegEx]::Match($_.href, '\d+.\d+.?(\d+)?.zip').Value -Split ".zip")[0] } }
 #$latestFile = $sortedZipFiles[-1]
 $latestFile = "sonarqube-6.7.4.zip"
-$downloadUri = $downloadSource + $latestFile.href
+$downloadUri = $downloadSource + $latestFile
 
 Write-Output "Downloading '$downloadUri'"
 $outputFile = "..\wwwroot\$($latestFile.href)"
