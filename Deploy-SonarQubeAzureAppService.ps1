@@ -14,7 +14,8 @@ $zipFiles = $allDownloads[0].Links | Where-Object { $_.href.EndsWith('.zip') -an
 # We sort by a custom expression so that we sort based on a version and not as a string. This results in the proper order given values such as 7.9.zip and 7.9.1.zip.
 #   In the expression we use RegEx to find the "Version.zip" string, then split and grab the first to get just the "Version" and finally cast that to a version object
 $sortedZipFiles = $zipFiles | Sort-Object -Property @{ Expression = { [Version]([RegEx]::Match($_.href, '\d+.\d+.?(\d+)?.zip').Value -Split ".zip")[0] } }
-$latestFile = $sortedZipFiles[-1]
+#$latestFile = $sortedZipFiles[-1]
+$latestFile = "sonarqube-6.7.4.zip"
 $downloadUri = $downloadSource + $latestFile.href
 
 Write-Output "Downloading '$downloadUri'"
